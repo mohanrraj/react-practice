@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header"
+import Nav from "./components/Nav"
+import Home from './components/Home';
+import About from './components/About';
+import { DataProvider } from './DataContext/DataContext';
+import { Routes, Route } from 'react-router-dom';
+import Add from "./components/Add";
+import EditItem from "./components/EditItem";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <DataProvider>
+        <Header />
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path ="/about" element={<About />} />
+          <Route path ="/add" element={<Add />} />
+          <Route path ="/edit/:id" element={<EditItem />} />
+        </Routes>
+      </DataProvider>
     </div>
+  
   );
 }
 
